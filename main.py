@@ -1,11 +1,9 @@
-import random
 import time
-# from datetime import datetime
 from functions import *
 from data import acoes
 from classes import *
 
-
+jogo = None
 try:
     times = iniciar_times()
     time_mandante = times.get("mandante")
@@ -36,21 +34,23 @@ try:
             acao = Gol(jogador, time_selecionado)
 
             print('Goool!!')
-            # atualizar_placar(jogo, acao)
             jogo.atualizar_placar(acao)
 
         elif lance == 'Falta':
             time_beneficiado = pegar_time_aleatorio([time_mandante, time_visitante])
             jogador = pegar_jogador_aleatorio(time_beneficiado)
             acao = Falta(jogador, time_beneficiado)
+            jogo.faltas += 1
 
         elif lance == 'Escanteio':
             time_beneficiado = pegar_time_aleatorio([time_mandante, time_visitante])
             acao = Escanteio(time_beneficiado)
+            jogo.escanteios += 1
 
         else:
             time_selecionado = pegar_time_aleatorio([time_mandante, time_visitante])
             acao = SaidaBola(time_selecionado)
+            jogo.saidas_de_bola += 1
 
         jogo.exibir_placar()
         acao()
@@ -62,5 +62,4 @@ try:
 except Exception as e:
     print(e.args)
 finally:
-    jogo.exibir_placar()
-    # Exibir resultado final
+    jogo.exibir_placar_final()

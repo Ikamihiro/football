@@ -2,6 +2,7 @@ class Pessoa:
     """
     - Classe para representar os dados de uma **Pessoa**
     """
+
     def __init__(self, nome: str, idade: int):
         """
         - Construtor para a classe **Pessoa**
@@ -16,6 +17,7 @@ class Jogador(Pessoa):
     """
     - Classe para representar os dados de um **Jogador**
     """
+
     def __init__(self, nome: str, idade: int, numero_camisa: int, posicao: [str]):
         """
         - Construtor para a classe **Jogador**
@@ -33,6 +35,7 @@ class Tecnico(Pessoa):
     """
     - Classe para representar os dados de um **Técnico**
     """
+
     def __init__(self, nome: str, idade: int):
         """
         - Construtor para a classe **Tecnico**
@@ -46,6 +49,7 @@ class Torcedor(Pessoa):
     """
     - Classe para representar os dados de um **Torcedor**
     """
+
     def __init__(self, nome: str, idade: int):
         """
         - Construtor para a classe **Torcedor**
@@ -59,6 +63,7 @@ class Juiz(Pessoa):
     """
     - Classe para representar os dados de um **Juiz**
     """
+
     def __init__(self, nome: str, idade: int):
         """
         - Construtor da classe **Juiz**
@@ -72,6 +77,7 @@ class Time:
     """
     - Classe para representar os dados de um **Time**
     """
+
     def __init__(self, nome: str, apelido: str, tecnico: Tecnico, jogadores: [Jogador], torcedores: [Torcedor]):
         """
         - Construtor da classe **Time**
@@ -92,6 +98,7 @@ class Acao:
     """
     - Classe para representar os dados de uma **Ação**
     """
+
     def __init__(self, nome: str):
         """
         - Construtor para a classe **Acao**
@@ -111,6 +118,7 @@ class Gol(Acao):
     """
     - Classe para representar os dados de um **Gol**
     """
+
     def __init__(self, jogador: Jogador, time: Time):
         """
         - Construtor da classe **Gol**
@@ -133,6 +141,7 @@ class Falta(Acao):
     """
     - Classe para representar os dados de uma **Falta**
     """
+
     def __init__(self, jogador: Jogador, time_benificiado: Time):
         """
         - Construtor para a classe **Falta**
@@ -156,6 +165,7 @@ class Escanteio(Acao):
     """
     - Classe para representar os dados de um **Escanteio**
     """
+
     def __init__(self, time_benificiado: Time):
         """
         - Construtor para a classe **Escanteio**
@@ -177,6 +187,7 @@ class SaidaBola(Acao):
     """
     - Classe para representar os dados de uma **Saída de Bola**
     """
+
     def __init__(self, time: Time):
         """
         - Construtor da classe **SaidaBola**
@@ -198,6 +209,7 @@ class Placar:
     """
     - Classe para representar os dados de um **Placar**
     """
+
     def __init__(self, placar_time_mandante: int, placar_time_visitante: int):
         """
         - Construtor da classe **Placar**
@@ -212,6 +224,7 @@ class Jogo:
     """
     - Classe para representar os dados de um **Jogo**
     """
+
     def __init__(self, time_mandante: Time, time_visitante: Time, placar: Placar, juiz: Juiz):
         """
         - Construtor da classe **Jogo**
@@ -224,6 +237,9 @@ class Jogo:
         self.time_visitante = time_visitante
         self.placar = placar
         self.juiz = juiz
+        self.faltas = 0
+        self.escanteios = 0
+        self.saidas_de_bola = 0
 
     def exibir_placar(self) -> None:
         """
@@ -232,6 +248,17 @@ class Jogo:
         """
         print(f'\n{self.time_mandante.nome} | {self.placar.placar_time_mandante} ', end='X')
         print(f' {self.placar.placar_time_visitante} | {self.time_visitante.nome}\n')
+
+    def exibir_placar_final(self) -> None:
+        """
+        - Exibir placar final do **Jogo**
+        :return: None
+        """
+        print(f'\n{self.time_mandante.nome} | {self.placar.placar_time_mandante} ', end='X')
+        print(f' {self.placar.placar_time_visitante} | {self.time_visitante.nome}\n')
+        print(f'Total de faltas: {self.faltas}')
+        print(f'Total de escanteios: {self.escanteios}')
+        print(f'Total de saídas de bola: {self.saidas_de_bola}')
 
     def atualizar_placar(self, gol: Gol) -> None:
         """

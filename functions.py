@@ -1,7 +1,7 @@
 import random
 from typing import Dict
 from data import times, juizes
-from classes import Time, Jogo, Placar, Gol
+from classes import Time, Jogo, Placar, Jogador
 
 
 def iniciar_times() -> Dict[str, Time]:
@@ -70,34 +70,41 @@ def iniciar_jogo(time_mandante: Time, time_visitante: Time) -> Jogo:
 
 
 def pegar_acao_aleatoria(__i: int) -> int:
+    """
+    - Função para pegar uma ação aleatória
+    :param __i: int
+    :return: int
+    """
     if (__i == 1) or (__i == 45):
         return 4
     return random.randrange(0, 9)
 
 
 def pegar_time_aleatorio(__times: []) -> Time:
+    """
+    - Função para pegar um **Time** aleatório
+    :param __times: []
+    :return: Time
+    """
     return random.choice(__times)
 
 
-def pegar_jogador_aleatorio(__time_selecionado: Time):
+def pegar_jogador_aleatorio(__time_selecionado: Time) -> Jogador:
+    """
+    - Função para pegar um **Jogador** aleatório de um **Time**
+    :param __time_selecionado: Time
+    :return: Jogador
+    """
     __jogadores = __time_selecionado.jogadores
     return random.choice(__jogadores)
 
 
 def verificar_possibilidade_gol() -> bool:
+    """
+    - Função que verifica a possibilida de um **Gol** acontecer
+    :return: bool
+    """
     possibilidade = random.randint(0, 10)
     if possibilidade > 6:
         return True
     return False
-
-
-def exibir_placar(jogo: Jogo) -> None:
-    print(f'\n{jogo.time_mandante.nome} | {jogo.placar.placar_time_mandante} ', end='X')
-    print(f' {jogo.placar.placar_time_visitante} | {jogo.time_visitante.nome}\n')
-
-
-def atualizar_placar(jogo: Jogo, gol: Gol) -> None:
-    if gol.time == jogo.time_mandante:
-        jogo.placar.placar_time_mandante += 1
-    else:
-        jogo.placar.placar_time_visitante += 1
