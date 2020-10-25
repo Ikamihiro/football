@@ -259,6 +259,8 @@ class Jogo:
         print(f'Total de faltas: {self.faltas}')
         print(f'Total de escanteios: {self.escanteios}')
         print(f'Total de saídas de bola: {self.saidas_de_bola}')
+        print(f'Total de gols do time mandante: {self.placar.placar_time_mandante}')
+        print(f'Total de gols do time visitante: {self.placar.placar_time_visitante}')
 
     def atualizar_placar(self, gol: Gol) -> None:
         """

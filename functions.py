@@ -97,14 +97,3 @@ def pegar_jogador_aleatorio(__time_selecionado: Time) -> Jogador:
     """
     __jogadores = __time_selecionado.jogadores
     return random.choice(__jogadores)
-
-
-def verificar_possibilidade_gol() -> bool:
-    """
-    - Função que verifica a possibilida de um **Gol** acontecer
-    :return: bool
-    """
-    possibilidade = random.randint(0, 10)
-    if possibilidade > 6:
-        return True
-    return False
